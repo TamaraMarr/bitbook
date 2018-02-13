@@ -2,6 +2,8 @@
 
 BitBook is a social network that allows users to register, post text, video or image posts, comment on posts and edit their own or see other people's profiles.
 
+Demo: [BitBook](https://tamaramarr.github.io/bitbook/).
+
 ### Stack
 
 Languages: HTML5, CSS3, JavaScript (ES6)<br />
