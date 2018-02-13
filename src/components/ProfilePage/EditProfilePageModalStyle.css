@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
+
+/* MODAL CARD STYLE */
+.ProfilePage_updateProfileHeading {
+    color: #454545;
+    font-family: 'Satisfy', cursive;
+    margin-bottom: 30px;
+}
+
+.ProfilePage_modalCardStyle {
+    background-color: rgb(231, 231, 231);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 25px;
+    border-radius: 10px 10px 10px 10px;
+    position: relative;
+    border: solid 2px #d8d8d8;
+}
+
+/* UPDATE BUTTON */
+.ProfilePage_updateButtonStyle {
+    background-color: #785964;
+    font-weight: bold;
+    color: rgb(236, 221, 210);
+    border: none;
+    width: 90%;
+    display: inline-block;
+    font-size: 1rem;
+    height: 80%;
+}
+
+.ProfilePage_updateButtonStyle:hover {
+    width: 110%;
+    background-color: #917881;
+}
+
+.ProfilePage_updateButtonStyle:active {
+    background-color: #785964;
+}
+
+/* CLOSE BUTTON */
+.ProfilePage_closeButton {
+    float: right;
+}
+
+/* CHOOSE FILE BUTTON */
+.ProfilePage_chooseFileButtonStyle {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.ProfilePage_mockChooseFileButton {
+    font-weight: bold;
+	color: rgb(236, 221, 210);
+	border: none;
+	background-color: #785964;
+	margin-bottom: 10px;
+	width: 100%;
+    height: 60%;
+    min-height: 40px;
+	min-width: 70px;
+	font-size: 1rem;
+}
+
+.ProfilePage_mockChooseFileButton:hover {
+    background-color: #917881;
+}
