@@ -121,12 +121,16 @@ export default class Register extends React.Component {
                     error: error
                 });
             });
+            
+            this.props.informAboutSuccessfulRegister(true);
             this.redirection.redirect("login");
         } else {
             this.setState({
                 isThereError: true,
                 error: "Form data invalid"
             });
+
+            this.props.informAboutSuccessfulRegister(false);
         }
     }
         
