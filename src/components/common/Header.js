@@ -9,7 +9,47 @@ export default class Header extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            feedPage: "#F1FFFA",
+            peoplePage: "",
+            profilePage: ""
+        }
+
+        this.bindInit();
+
         this.logout = new AuthenticationService();
+    }
+
+    bindInit() {
+        this.indicatePage = this.indicatePage.bind(this);
+    }
+
+    indicatePage() {
+        const temp = window.location.href.split("/");
+        const currentLocation = temp[temp.length - 1];
+
+        switch(currentLocation) {
+            case "feed":
+                this.setState({
+                    feedPage: "#F1FFFA",
+                    peoplePage: "",
+                    profilePage: ""
+                });
+                break;
+            case "people":
+                this.setState({
+                    feedPage: "",
+                    peoplePage: "#F1FFFA",
+                    profilePage: ""
+                });
+                break;
+            case "profile":
+                this.setState({
+                    feedPage: "",
+                    peoplePage: "",
+                    profilePage: "#F1FFFA"
+                })
+        }
     }
 
     render() {
@@ -23,18 +63,18 @@ export default class Header extends Component {
                 </button>
                 <div className="collapse navbar-collapse justify-content-end pull-right" id="navbarColor01">
                     <ul className="navbar-nav" style={{ fontSize: "1.2em", backgroundColor: "#785964" }}>
-                        <li data-toggle="collapse" data-target="#navbarColor01">
-                            <Link className="Header_navLinkStyle" to="/feed">
+                        <li data-target="#navbarColor01" onClick={this.indicatePage}>
+                            <Link className="Header_navLinkStyle" to="/feed" style={{ color: this.state.feedPage }}>
                                 Feed<span className="sr-only">(current)</span>
                             </Link>
                         </li>
-                        <li data-toggle="collapse" data-target="#navbarColor01">
-                            <Link className="Header_navLinkStyle" to="/people">
+                        <li data-target="#navbarColor01" onClick={this.indicatePage}>
+                            <Link className="Header_navLinkStyle" to="/people" style={{ color: this.state.peoplePage }}>
                                 People
                             </Link>
                         </li>
-                        <li data-toggle="collapse" data-target="#navbarColor01">
-                            <Link className="Header_navLinkStyle" to="/profile">
+                        <li data-target="#navbarColor01" onClick={this.indicatePage}>
+                            <Link className="Header_navLinkStyle" to="/profile" style={{ color: this.state.profilePage }}>
                                 Profile
                             </Link>
                         </li>

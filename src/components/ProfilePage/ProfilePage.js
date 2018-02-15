@@ -8,10 +8,6 @@ import RedirectionService from "../../services/RedirectionService";
 import "./ProfilePage.css";
 import "./EditProfilePageModalStyle.css";
 
-const buttonsWithTransition = {
-    transition: "width 0.5s",
-    transitionTimingFunction: "linear"
-};
 
 const modalStyle = {
     content: {
@@ -226,7 +222,6 @@ export default class UserProfile extends Component {
                                     value="Close"
                                     onClick={this.closeModal}
                                     className="btn ProfilePage_updateButtonStyle ProfilePage_closeButton col-12 col-sm-12 col-md-4 offset-md-7 col-lg-3 offset-8 col-xl-3 offset-8"
-                                    style={buttonsWithTransition}
                                 />
                                 <div>
                                     <input
@@ -318,7 +313,6 @@ export default class UserProfile extends Component {
                                     value="Update"
                                     onClick={this.updateProfile}
                                     className="btn ProfilePage_updateButtonStyle col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3"
-                                    style={buttonsWithTransition}
                                 />
                                 <p>
                                     {this.state.isThereError
