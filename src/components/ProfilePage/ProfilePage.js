@@ -370,11 +370,11 @@ export default class UserProfile extends Component {
                                     : this.displayEditProfileButton()}
                                 {this.state.aboutShort
                                     ? <p className="card-text">{this.state.aboutShort}</p>
-                                    : <p>This user hasn{"'"}t written anything about him/herself</p>
+                                    : <p></p>
                                 }
                                 {this.state.about
                                     ? <p className="card-text" style={{ marginBottom: "20px" }}>{this.state.about}</p>
-                                    : <p>This user hasn{"'"}t written anything about him/herself</p>
+                                    : <p style={{ marginBottom: "50px" }}>This user hasn{"'"}t written anything about him/herself</p>
                                 }
                                 <button className="btn ProfilePage_userDataInfoButtons">
                                     Posts: {this.state.posts ? this.state.posts : "0"}
