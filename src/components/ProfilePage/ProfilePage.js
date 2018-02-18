@@ -11,7 +11,7 @@ import "./EditProfilePageModalStyle.css";
 
 const modalStyle = {
     content: {
-        height: "90%",
+        height: "8ProfilePage_error0%",
         maxWidth: "70%",
         margin: "0 auto",
         marginTop: "55px"
@@ -38,6 +38,7 @@ export default class UserProfile extends Component {
             newAvatarUrl: "",
             error: "",
             isThereError: false,
+            uploadImageError: false,
             uploadedImage: "",
             successfulUpload: false,
             imageSelectedForUpload: false
@@ -88,6 +89,7 @@ export default class UserProfile extends Component {
 
     getMyProfile() {
         this.getData.getProfileData(profile => {
+            console.log(profile);
             this.setState({
                 name: profile.name,
                 avatar: profile.avatarUrl,
@@ -140,7 +142,7 @@ export default class UserProfile extends Component {
             ? (newAbout = this.state.newAbout)
             : (newAbout = this.state.about)
                 ? (newAbout = this.state.about)
-                : (newAbout = "");
+                : (newAbout = "This user hasn't written anything about him/herself");
         this.state.newAvatarUrl
             ? (newAvatarUrl = this.state.newAvatarUrl)
             : this.state.uploadedImage
@@ -150,7 +152,7 @@ export default class UserProfile extends Component {
             ? (newAboutShort = this.state.newAboutShort)
             : (newAboutShort = this.state.aboutShort)
                 ? (newAboutShort = this.state.aboutShort)
-                : (newAboutShort = "");
+                : (newAboutShort = "This user hasn't written anything about him/herself");
         this.state.newEmail
             ? (newEmail = this.state.newEmail)
             : (newEmail = this.state.email);
@@ -163,21 +165,16 @@ export default class UserProfile extends Component {
             email: newEmail
         };
 
-        this.setState({
-            successfulUpload: false
-        });
-
         this.getData.updateProfileData(newProfileData, error => {
             this.setState({
                 isThereError: true,
-                error: error.response.status
+                successfulUpload: false
             });
         });
     }
 
     uploadImage() {
         const file = document.querySelector("#file").files[0];
-        
 
         this.getData.uploadImage(
             file,
@@ -189,7 +186,11 @@ export default class UserProfile extends Component {
                 });
             },
             error => {
-                console.log(error);
+                if(error.error === "Please Upload a image.") {
+                    this.setState({
+                        uploadImageError: true
+                    })
+                }
             }
         );
     }
@@ -218,12 +219,6 @@ export default class UserProfile extends Component {
                     <div className="row">
                         <div className="ProfilePage_modalCardStyle">
                             <form>
-                                <input
-                                    type="button"
-                                    value="Close"
-                                    onClick={this.closeModal}
-                                    className="btn ProfilePage_updateButtonStyle ProfilePage_closeButton col-12 col-sm-12 col-md-4 offset-md-7 col-lg-3 offset-8 col-xl-3 offset-8"
-                                />
                                 <div>
                                     <input
                                         type="text"
@@ -259,12 +254,14 @@ export default class UserProfile extends Component {
                                         value={this.state.avatarUrl}
                                         onChange={this.collectFieldValue}
                                         name="avatar"
+                                        id="avatarURL"
                                         placeholder="Enter new avatar url"
                                         className="form-control form-control-lg ProfilePage_formInputElement"
                                         required
                                     />
                                 </div>
-                                <div>
+                                <div className="ProfilePage_uploadButtonsDiv">
+                                    Or choose a file
                                     <input
                                         type="file"
                                         onClick={this.informUser}
@@ -274,13 +271,10 @@ export default class UserProfile extends Component {
                                     />
                                     <label
                                         htmlFor="file"
-                                        style={{ float: "left" }}
                                         className="btn ProfilePage_mockChooseFileButton col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3"
                                     >
-                                        Or Choose a File
+                                        Browse
                                     </label>
-                                </div>
-                                <div>
                                     <input
                                         type="button"
                                         onClick={this.uploadImage}
@@ -290,7 +284,6 @@ export default class UserProfile extends Component {
                                     />
                                     <label
                                         htmlFor="upload"
-                                        style={{ float: "right" }}
                                         className="btn ProfilePage_mockChooseFileButton col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3"
                                     >
                                         Upload
@@ -298,6 +291,7 @@ export default class UserProfile extends Component {
                                 </div>
                                 {this.state.imageSelectedForUpload ? <p className="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-4" style={{ margin: "0 auto" }}>Image successfully selected!</p> : ""}
                                 {this.state.successfulUpload ? <p className="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-4" style={{ margin: "0 auto" }}>Image successfully uploaded!</p> : ""}
+                                {this.state.uploadImageError ? <p className="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-4" style={{ margin: "0 auto" }}>Please upload an image!</p> : ""}
                                 <textarea
                                     value={this.state.about
                                         ? this.state.about
@@ -311,13 +305,19 @@ export default class UserProfile extends Component {
                                 />
                                 <input
                                     type="button"
+                                    value="Close"
+                                    onClick={this.closeModal}
+                                    className="btn ProfilePage_updateButtonStyle ProfilePage_closeButton col-12 col-sm-12 col-md-4 offset-md-7 col-lg-3 offset-8 col-xl-3 offset-8"
+                                />
+                                <input
+                                    type="button"
                                     value="Update"
                                     onClick={this.updateProfile}
                                     className="btn ProfilePage_updateButtonStyle col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3"
                                 />
-                                <p>
+                                <p className="ProfilePage_error">
                                     {this.state.isThereError
-                                        ? `Error ${this.state.error}: All inputs must be filled`
+                                        ? "Error: All inputs must be filled"
                                         : ""}
                                 </p>
                             </form>
@@ -335,13 +335,12 @@ export default class UserProfile extends Component {
                 type="button"
                 value="Edit Profile"
                 onClick={this.openModal}
-                className="btn col-6 offset-3 ProfilePage_updateButtonStyle"
+                className="btn col-6 offset-3 ProfilePage_editProfileButtonStyle"
             />
         );
     }
 
     render() {
-        console.log(this.state.aboutShort);
         return (
             <div className="container">
                 <div className="row">
@@ -373,11 +372,11 @@ export default class UserProfile extends Component {
                                     : this.displayEditProfileButton()}
                                 {this.state.aboutShort
                                     ? <p className="card-text">{this.state.aboutShort}</p>
-                                    : <p></p>
+                                    : ""
                                 }
-                                {this.state.about
-                                    ? <p className="card-text" style={{ marginBottom: "20px" }}>{this.state.about}</p>
-                                    : <p style={{ marginBottom: "50px" }}>This user hasn{"'"}t written anything about him/herself</p>
+                                {this.state.about === "This user hasn't written anything about him/herself" || this.state.about === "Nothing yet"
+                                    ? ""
+                                    : <p className="card-text" style={{ marginBottom: "20px" }}>{this.state.about}</p>
                                 }
                             </div>
                         </div>

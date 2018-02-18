@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import DataService from "../../services/DataService";
 import RedirectionService from "../../services/RedirectionService";
@@ -47,9 +49,12 @@ export default class RenderPost extends Component {
 
     render() {
         const singlePost = this.props.singlePost;
+        console.log(singlePost);
         return (
             <div>
-                <h3 className="card-title RenderPost_profileName">{singlePost.userDisplayName}</h3>
+                <Link to={`/profile/${singlePost.userId}`}>
+                    <h3 className="card-title RenderPost_profileName">{singlePost.userDisplayName}</h3>
+                </Link>
                 <p className="RenderPost_headerDateStyle">{singlePost.dateCreated}</p>
                 <p>{singlePost.text ? <p className="RednerPost_textPostStyle">{singlePost.text}</p> : singlePost.imageUrl ? <img alt="Posted Pic" src={singlePost.imageUrl} className="RenderPost_imgStyle" /> : singlePost.videoUrl ? this.processVideoUrl(singlePost.videoUrl) : "no content detected"}</p>
                 {this.renderDeleteButton()}

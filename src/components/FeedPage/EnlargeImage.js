@@ -33,7 +33,7 @@ export default class EnlargeImage extends Component {
                         <div onClick={this.preventDefault} style={{ display:"table-cell" , textAlign:"center", verticalAlign:"middle", zIndex: "100" }}>
                             <div style={{ position: "relative" }}>
                                 <img src={this.props.imgSrc} name="image" width="60%" alt="Enlarged Pic"/>
-                                <input type="image" value="Close" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/pink-black-cherry-blossom-festival-icons-alphanumeric/073167-pink-black-cherry-blossom-festival-icon-alphanumeric-x-styled.png" alt="Close" onClick={this.closeImg} style={{ position: "absolute", top: "12px", right: "21%", width: "3%" }} />
+                                <input type="image" value="Close" src="https://image.flaticon.com/icons/svg/61/61155.svg" alt="Close" onClick={this.closeImg} style={{ position: "absolute", top: "-35px", rigth: "-55px", width: "1%" }} />
                             </div>
                         </div>
                     </div>

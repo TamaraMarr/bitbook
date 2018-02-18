@@ -54,3 +54,20 @@
     display: inline-block;
     margin: 0;
 }
+
+.ProfilePage_error {
+    text-align: center;
+    color: red;
+    font-style: italic;
+}
+
+.ProfilePage_editProfileButtonStyle {
+    background-color: #785964;
+    font-weight: bold;
+    color: rgb(236, 221, 210);
+    border: none;
+    width: 30%;
+    font-size: 1rem;
+    height: 80%;
+    margin: 15px auto;
+}

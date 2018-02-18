@@ -17,20 +17,31 @@
     border: solid 2px #d8d8d8;
 }
 
+/* INPUTS */
+.ProfilePage_formInputElement {
+    margin: 10px 0;
+}
+
 /* UPDATE BUTTON */
 .ProfilePage_updateButtonStyle {
     background-color: #785964;
     font-weight: bold;
     color: rgb(236, 221, 210);
     border: none;
-    width: 90%;
+    width: 10%;
     display: inline-block;
     font-size: 1rem;
     height: 80%;
 }
 
+@media all and (max-width: 470px) {
+    .ProfilePage_updateButtonStyle {
+        width: 65px;
+        padding: 5px 10px;
+    }
+}
+
 .ProfilePage_updateButtonStyle:hover {
-    width: 110%;
     background-color: #917881;
 }
 
@@ -43,7 +54,19 @@
     float: right;
 }
 
+@media all and (max-width: 470px) {
+    .ProfilePage_closeButton  {
+        width: 65px;
+        padding: 5px 10px;
+    }
+}
+
 /* CHOOSE FILE BUTTON */
+.ProfilePage_uploadButtonsDiv {
+    display: flex;
+    justify-content: space-around;
+}
+
 .ProfilePage_chooseFileButtonStyle {
 	width: 0.1px;
 	height: 0.1px;
@@ -63,7 +86,7 @@
     height: 60%;
     min-height: 40px;
 	min-width: 70px;
-	font-size: 1rem;
+    font-size: 1rem;
 }
 
 .ProfilePage_mockChooseFileButton:hover {

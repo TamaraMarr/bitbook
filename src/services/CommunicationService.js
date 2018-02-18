@@ -32,7 +32,7 @@ export default class CommunicationService {
                 notifyPostRequest(response);
             })
             .catch(error => {
-                let errorMsg = error.response ? error.response.data.error.message : "Server unavailable";
+                let errorMsg = error.response ? error.response.data : "Server unavailable";
                 handleError(errorMsg);
             });
     }
@@ -52,17 +52,17 @@ export default class CommunicationService {
             });
     }
 
-    putRequest(address, data, notifyGetRequest, handleError) {
+    putRequest(address, data, notifyPutRequest, handleError) {
         const requestURL = `${BASE_URL}/${address}`;
-
+        
         axios.put(requestURL, data, {
             headers: this.createHeaders()
         })
             .then(response => {
-                notifyGetRequest(response);
+                notifyPutRequest(response);
             })
             .catch(error => {
-                let errorMsg = error.response ? error.response.code : "Server unavailable";
+                let errorMsg = error.response ? error.response.status : "Server unavailable";
                 handleError(errorMsg);
             });
     }

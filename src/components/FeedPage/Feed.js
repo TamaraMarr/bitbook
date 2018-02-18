@@ -21,7 +21,7 @@ import "./AddPostModalStyle.css";
 const modalStyle = {
     content: {
         height: "70vh",
-        maxWidth: "70%",
+        maxWidth: "60vw",
         margin: "0 auto",
         marginTop: "75px"
     }
@@ -147,6 +147,10 @@ export default class Feed extends Component {
 
     /* DISPLAYING POSTS */
     renderPosts() {
+        if (this.state.searchedResults) {
+            return this.showPosts(this.state.matchedPosts);
+        }
+
         if (this.state.isTextFilterOn) {
             return this.showPosts(this.state.textPosts);
         }
@@ -157,10 +161,6 @@ export default class Feed extends Component {
 
         if (this.state.isVideoFilterOn) {
             return this.showPosts(this.state.videoPosts);
-        }
-
-        if (this.state.searchedResults) {
-            return this.showPosts(this.state.matchedPosts);
         }
 
         return this.showPosts(this.state.posts);
