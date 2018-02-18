@@ -40,7 +40,7 @@ export default class VideoPost extends Component {
     render() {
         return (
             <div>
-                <input type="text" placeholder="This is a video post" onChange={this.getVideoPost} className="form-control Posts_inputStyle" required />
+                <input type="text" placeholder="Share a video with the world!" onChange={this.getVideoPost} className="form-control Posts_inputStyle" required />
                 <div className="row">
                     <div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3">
                         <input type="button" value="Post" className="btn Posts_postButtonStyle" name="videoPost" onClick={this.createVideoPost} />

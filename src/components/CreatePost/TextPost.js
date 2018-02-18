@@ -41,12 +41,8 @@ export default class TextPost extends Component {
     render() {
         return (
             <div>
-                <textarea placeholder="This is a text post" rows="7" className="form-control Posts_inputStyle" onChange={this.getTextPost} required></textarea>
-                <div className="row">
-                    <div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3">
-                        <input type="button" value="Post" className="btn Posts_postButtonStyle" name="textPost" onClick={this.createTextPost} />
-                    </div>
-                </div>
+                <textarea placeholder="What's on your mind?" rows="7" className="form-control Posts_inputStyle" onChange={this.getTextPost} required></textarea>
+                <input type="button" value="Post" className="btn Posts_postButtonStyle" name="textPost" onClick={this.createTextPost} />
                 <div>{this.state.isThereError ? `Error ${this.state.error}` : ""}</div>
             </div>
         );

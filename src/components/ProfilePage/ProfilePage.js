@@ -8,10 +8,6 @@ import RedirectionService from "../../services/RedirectionService";
 import "./ProfilePage.css";
 import "./EditProfilePageModalStyle.css";
 
-const buttonsWithTransition = {
-    transition: "width 0.5s",
-    transitionTimingFunction: "linear"
-};
 
 const modalStyle = {
     content: {
@@ -66,7 +62,7 @@ export default class UserProfile extends Component {
         this.informUser = this.informUser.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let userId = this.props.match.params.id;
         if (userId) {
             this.getOtherProfile(userId);
@@ -78,15 +74,16 @@ export default class UserProfile extends Component {
     getOtherProfile(id) {
         this.getData.getSingleUserData(user => {
             this.setState({
-                name: user.data.name,
-                avatar: user.data.avatarUrl,
-                about: user.data.about,
-                aboutShort: user.data.aboutShort,
-                commentsCount: user.data.commentsCount,
-                email: user.data.email,
-                posts: user.data.postsCount
+                name: user.name,
+                avatar: user.avatarUrl,
+                about: user.about,
+                aboutShort: user.aboutShort,
+                commentsCount: user.commentsCount,
+                email: user.email,
+                posts: user.postsCount
             });
         }, id);
+
     }
 
     getMyProfile() {
@@ -143,7 +140,7 @@ export default class UserProfile extends Component {
             ? (newAbout = this.state.newAbout)
             : (newAbout = this.state.about)
                 ? (newAbout = this.state.about)
-                : (newAbout = "This user hasn't written anything about him/herself");
+                : (newAbout = "");
         this.state.newAvatarUrl
             ? (newAvatarUrl = this.state.newAvatarUrl)
             : this.state.uploadedImage
@@ -153,7 +150,7 @@ export default class UserProfile extends Component {
             ? (newAboutShort = this.state.newAboutShort)
             : (newAboutShort = this.state.aboutShort)
                 ? (newAboutShort = this.state.aboutShort)
-                : (newAboutShort = "This user hasn't written anything about him/herself");
+                : (newAboutShort = "");
         this.state.newEmail
             ? (newEmail = this.state.newEmail)
             : (newEmail = this.state.email);
@@ -226,7 +223,6 @@ export default class UserProfile extends Component {
                                     value="Close"
                                     onClick={this.closeModal}
                                     className="btn ProfilePage_updateButtonStyle ProfilePage_closeButton col-12 col-sm-12 col-md-4 offset-md-7 col-lg-3 offset-8 col-xl-3 offset-8"
-                                    style={buttonsWithTransition}
                                 />
                                 <div>
                                     <input
@@ -318,7 +314,6 @@ export default class UserProfile extends Component {
                                     value="Update"
                                     onClick={this.updateProfile}
                                     className="btn ProfilePage_updateButtonStyle col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3"
-                                    style={buttonsWithTransition}
                                 />
                                 <p>
                                     {this.state.isThereError
@@ -338,8 +333,7 @@ export default class UserProfile extends Component {
         return (
             <input
                 type="button"
-                value="Edit Profile "
-                id="editProfileData"
+                value="Edit Profile"
                 onClick={this.openModal}
                 className="btn col-6 offset-3 ProfilePage_updateButtonStyle"
             />
@@ -347,6 +341,7 @@ export default class UserProfile extends Component {
     }
 
     render() {
+        console.log(this.state.aboutShort);
         return (
             <div className="container">
                 <div className="row">
@@ -365,6 +360,14 @@ export default class UserProfile extends Component {
                                 <h2 className="card-title ProfilePage_userName">
                                     {this.state.name}
                                 </h2>
+                                <div className="ProfilePage_postsAndCommentsInfo">
+                                    <p className="btn ProfilePage_userDataInfo">
+                                        Posts: {this.state.posts ? this.state.posts : "0"}
+                                    </p>
+                                    <p className="btn ProfilePage_userDataInfo">
+                                        Comments: {this.state.comments ? this.state.comments : "0"}
+                                    </p>
+                                </div>
                                 {this.props.match.params.id
                                     ? ""
                                     : this.displayEditProfileButton()}
@@ -376,12 +379,6 @@ export default class UserProfile extends Component {
                                     ? <p className="card-text" style={{ marginBottom: "20px" }}>{this.state.about}</p>
                                     : <p style={{ marginBottom: "50px" }}>This user hasn{"'"}t written anything about him/herself</p>
                                 }
-                                <button className="btn ProfilePage_userDataInfoButtons">
-                                    Posts: {this.state.posts ? this.state.posts : "0"}
-                                </button>
-                                <button className="btn ProfilePage_userDataInfoButtons">
-                                    Comments: {this.state.comments ? this.state.comments : "0"}
-                                </button>
                             </div>
                         </div>
                     </div>

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import "./GetComments.css";
 
-const GetComments = () => {
-    const comments = this.props.comments;
+const GetComments = (props) => {
+    const comments = props.comments;
 
     return (
         <div>

@@ -18,20 +18,14 @@ import Search from "../common/Search";
 import "./Feed.css";
 import "./AddPostModalStyle.css";
 
-const closeButtonStyle = {
-    //transition: "width 0.5s linear"
-};
-
 const modalStyle = {
     content: {
-        height: "60%",
+        height: "70vh",
         maxWidth: "70%",
         margin: "0 auto",
         marginTop: "75px"
     }
 };
-
-
 
 export default class Feed extends Component {
     constructor(props) {
@@ -63,6 +57,10 @@ export default class Feed extends Component {
             searchString: "",
             matchedPosts: [],
             searchedResults: false,
+            isTextFilterSelected: false,
+            isImageFilterSelected: false,
+            isVideoFilterSelected: false,
+            areAllFilteresOff: true,
 
             isThereError: false
         };
@@ -280,17 +278,23 @@ export default class Feed extends Component {
         if(event.target.getAttribute("name") === "text"){
             this.setState({
                 textPosts: textPostsArray,
-                isTextFilterOn: true
+                isTextFilterOn: true,
+                isTextFilterSelected: true,
+                areAllFilteresOff: false
             });
         } else if(event.target.getAttribute("name") === "image"){
             this.setState({
                 imagePosts: imagePostsArray,
-                isImageFilterOn: true
+                isImageFilterOn: true,
+                isImageFilterSelected: true,
+                areAllFilteresOff: false
             });
         } else if(event.target.getAttribute("name") === "video"){
             this.setState({
                 videoPosts: videoPostsArray,
-                isVideoFilterOn: true
+                isVideoFilterOn: true,
+                isVideoFilterSelected: true,
+                areAllFilteresOff: false
             });
         };
     }
@@ -300,7 +304,11 @@ export default class Feed extends Component {
             isTextFilterOn: false,
             isImageFilterOn: false,
             isVideoFilterOn: false,
-            searchedResults: false
+            searchedResults: false,
+            isTextFilterSelected: false,
+            isImageFilterSelected: false,
+            isVideoFilterSelected: false,
+            areAllFilteresOff: true
         });
     }
 
@@ -472,7 +480,7 @@ export default class Feed extends Component {
                                 aria-haspopup="true"
                                 aria-expanded="false"
                             >
-                                Filter Results
+                                Filter
                             </button>
                             <div
                                 className="dropdown-menu FeedPage_dropdownStyle"
@@ -484,6 +492,7 @@ export default class Feed extends Component {
                                     name="allPosts"
                                 >
                                     All Posts
+                                    {this.state.areAllFilteresOff ? <i className="fa fa-check" style={{ marginLeft: "50px"}}></i> : ""}
                                 </p>
                                 <p
                                     className="dropdown-item FeedPage_dropdownElementStyle"
@@ -491,6 +500,7 @@ export default class Feed extends Component {
                                     name="text"
                                 >
                                     Text Posts
+                                    {this.state.isTextFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px"}}></i> : ""}
                                 </p>
                                 <p
                                     className="dropdown-item FeedPage_dropdownElementStyle"
@@ -498,6 +508,7 @@ export default class Feed extends Component {
                                     name="image"
                                 >
                                     Image Posts
+                                    {this.state.isImageFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px"}}></i> : ""}
                                 </p>
                                 <p
                                     className="dropdown-item FeedPage_dropdownElementStyle"
@@ -505,10 +516,11 @@ export default class Feed extends Component {
                                     name="video"
                                 >
                                     Video Posts
+                                    {this.state.isVideoFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px"}}></i> : ""}
                                 </p>
                             </div>
                         </div>
-                        <div className="col-10 offset-1 col-sm-10 offset-sm-1 col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+                        <div className="col-10 offset-1 col-sm-10 offset-sm-1 col-md-10 offset-md-1 col-lg-6 offset-lg-0">
                             <Search
                                 dispatch={this.catchSearch}
                                 filterResults={this.filterResultsBySearchString}
@@ -590,19 +602,7 @@ export default class Feed extends Component {
                     <div className="row">
                         <div className="col-12 AddPostModal_modalCardStyle">
                             <form>
-                                <div className="row">
-                                    <div className="col-4 offset-5 col-sm-4 offset-sm-8 col-md-3 offset-md-9 col-lg-3 offset-lg-9 col-xl-3 offset-xl-9">
-                                        <input
-                                            type="button"
-                                            value="Close"
-                                            onClick={this.closeModal}
-                                            className="btn AddPostModal_closeButton"
-                                            style={closeButtonStyle}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row mx-auto">
+                                <div className="row mx-auto AddPostModal_generalStyle">
                                     <Redirect from="/feed" to="/feed/text" />
                                     <div className="col-12 col-md-4 col-lg-4" style={{ padding: "0"}}>
                                         <Link to="/feed/text">
@@ -649,6 +649,12 @@ export default class Feed extends Component {
                                         )}
                                     />
                                 </Switch>
+                                <input
+                                    type="button"
+                                    value="Close"
+                                    onClick={this.closeModal}
+                                    className="btn AddPostModal_closeButton"
+                                />
                             </form>
                         </div>
                     </div>

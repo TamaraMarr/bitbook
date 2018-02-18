@@ -29,6 +29,11 @@
 }
 
 /* ADD POSTS BUTTONS */
+.AddPostModal_generalStyle {
+    text-align: center;
+    margin-top: 50px;
+}
+
 .AddPostModal_addPostButtonStyle {
     background-color: #785964;
     font-weight: bold;
@@ -55,13 +60,18 @@
     border: none;
     background-color: #785964;
     float: left;
-    margin: 20px 0;
-    width: 90%;
+    margin: 15px;
+    width: 10%;
     height: 50%;
-    min-width: 100px;
     font-size: 1rem;
-    position: relative;
  }
+
+@media all and (max-width: 470px) {
+    .AddPostModal_closeButton {
+        width: 65px;
+        padding: 5px 10px;
+    }
+}
  
  .AddPostModal_closeButton:hover {
      background-color: #917881;
