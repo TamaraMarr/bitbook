@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import DataService from "../../services/DataService";
@@ -49,7 +48,7 @@ export default class RenderPost extends Component {
 
     render() {
         const singlePost = this.props.singlePost;
-        console.log(singlePost);
+        
         return (
             <div>
                 <Link to={`/profile/${singlePost.userId}`}>

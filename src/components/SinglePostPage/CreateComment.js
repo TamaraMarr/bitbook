@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import DataService from "../../services/DataService";
-import RedirectionService from "../../services/RedirectionService";
+import { dataService } from "../../services/DataService";
+// import { redirectionService } from "../../services/RedirectionService";
 
 import "./CreateComment.css";
 
@@ -9,28 +9,20 @@ export default class CreateComment extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            comment: ""
-        };
-
-        this.dataService = new DataService();
-        this.redirectionService = new RedirectionService();
-
-        this.bindInit();
+        this.state = this.initState()
     }
 
-    bindInit() {
-        this.postComment = this.postComment.bind(this);
-        this.collectCommentContent = this.collectCommentContent.bind(this);
-    }
+    initState = () => ({
+        comment: ""
+    })
 
-    postComment() {
+    postComment = () => {
         const body = {
             body: this.state.comment,
             postId: this.props.postId
         };
 
-        this.dataService.postComment(
+        dataService.postComment(
             body,
             response => {
                 this.setState({
@@ -44,7 +36,7 @@ export default class CreateComment extends Component {
         );
     }
 
-    collectCommentContent(e) {
+    collectCommentContent = (e) => {
         const comment = e.target.value;
         this.setState({
             comment

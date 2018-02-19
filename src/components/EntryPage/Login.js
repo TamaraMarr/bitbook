@@ -83,7 +83,7 @@ export default class Login extends React.Component {
                 password: passInput
             };
     
-            this.authenticationService.login(userData, (error) =>{
+            this.authenticationService.login(userData, (error) => {
                 this.setState({
                     isThereError: true,
                     error: error

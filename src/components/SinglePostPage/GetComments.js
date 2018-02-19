@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./GetComments.css";
 
 const GetComments = (props) => {
-    const comments = props.comments;
+    const { comments } = props;
 
     return (
         <div>

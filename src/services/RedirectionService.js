@@ -4,3 +4,5 @@ export default class RedirectionService {
         window.location.assign(`#/${url}`); 
     }
 }
+
+export const redirectionService = new RedirectionService();

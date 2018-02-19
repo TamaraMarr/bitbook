@@ -164,3 +164,5 @@ export default class DataService {
         });
     }
 }
+
+export const dataService = new DataService();

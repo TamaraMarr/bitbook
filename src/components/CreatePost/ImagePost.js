@@ -52,9 +52,8 @@ export default class TextPost extends Component {
 
     uploadImage() {
         const file = document.querySelector("input[type=file]").files[0];
-        console.log(file);
+        
         this.dataService.uploadImage(file, (response) => {
-            console.log("image post", response);
             this.setState({
                 uploadedImage: response,
                 successfulUpload: true

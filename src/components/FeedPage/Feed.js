@@ -571,13 +571,15 @@ export default class Feed extends Component {
                         </InfiniteScroll>
                     </div>
                 </div>
-                <input
-                    type="button"
-                    className="btn FeedPage_generalButtonStyle FeedPage_createButtonStyle"
-                    name="createPost"
-                    value="+"
-                    onClick={this.openModal}
-                />
+                <div className="FeedPage_createButtonStyle">
+                    <input
+                        type="button"
+                        className="btn"
+                        name="createPost"
+                        value="+"
+                        onClick={this.openModal}
+                    />
+                </div>
                 
                 <input
                     value="Back to Top"
