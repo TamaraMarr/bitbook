@@ -33,7 +33,7 @@ export default class EnlargeImage extends Component {
                         <div onClick={this.preventDefault} style={{ display:"table-cell" , textAlign:"center", verticalAlign:"middle", zIndex: "100" }}>
                             <div style={{ position: "relative" }}>
                                 <img src={this.props.imgSrc} name="image" width="60%" alt="Enlarged Pic"/>
-                                <input type="image" value="Close" src="https://image.flaticon.com/icons/svg/61/61155.svg" alt="Close" onClick={this.closeImg} style={{ position: "absolute", top: "-35px", rigth: "-55px", width: "1%" }} />
+                                <input type="image" value="Close" src="https://cbd-international.net/wp-content/plugins/wp-support-plus-responsive-ticket-system/asset/images/close_btn.png" alt="Close" onClick={this.closeImg} style={{ position: "absolute", top: "-10px", right: "270px", width: "2%" }} />
                             </div>
                         </div>
                     </div>
