@@ -186,7 +186,7 @@ export default class UserProfile extends Component {
                 });
             },
             error => {
-                if(error.error === "Please Upload a image.") {
+                if (error.error === "Please Upload a image.") {
                     this.setState({
                         uploadImageError: true
                     })
@@ -261,7 +261,6 @@ export default class UserProfile extends Component {
                                     />
                                 </div>
                                 <div className="ProfilePage_uploadButtonsDiv">
-                                    Or choose a file
                                     <input
                                         type="file"
                                         onClick={this.informUser}
@@ -271,9 +270,9 @@ export default class UserProfile extends Component {
                                     />
                                     <label
                                         htmlFor="file"
-                                        className="btn ProfilePage_mockChooseFileButton col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3"
+                                        className="btn ProfilePage_mockChooseFileButton col-6 col-sm-6 col-md-5 col-lg-4 col-xl-3"
                                     >
-                                        Browse
+                                        Find File
                                     </label>
                                     <input
                                         type="button"
@@ -284,7 +283,7 @@ export default class UserProfile extends Component {
                                     />
                                     <label
                                         htmlFor="upload"
-                                        className="btn ProfilePage_mockChooseFileButton col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3"
+                                        className="btn ProfilePage_mockChooseFileButton col-6 col-sm-5 col-md-5 col-lg-4 col-xl-3"
                                     >
                                         Upload
                                     </label>
@@ -303,18 +302,20 @@ export default class UserProfile extends Component {
                                     className="updateProfileForm form-control"
                                     required
                                 />
-                                <input
-                                    type="button"
-                                    value="Close"
-                                    onClick={this.closeModal}
-                                    className="btn ProfilePage_updateButtonStyle ProfilePage_closeButton col-12 col-sm-12 col-md-4 offset-md-7 col-lg-3 offset-8 col-xl-3 offset-8"
-                                />
-                                <input
-                                    type="button"
-                                    value="Update"
-                                    onClick={this.updateProfile}
-                                    className="btn ProfilePage_updateButtonStyle col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3"
-                                />
+                                <div className="ProfilePage_closeUpdateButtonsDiv">
+                                    <input
+                                        type="button"
+                                        value="Close"
+                                        onClick={this.closeModal}
+                                        className="btn ProfilePage_uploadButtonStyle ProfilePage_closeButton col-12 col-sm-12 col-md-4 offset-md-4 col-lg-3 offset-6 col-xl-3 offset-6"
+                                    />
+                                    <input
+                                        type="button"
+                                        value="Update"
+                                        onClick={this.updateProfile}
+                                        className="btn ProfilePage_uploadButtonStyle col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3"
+                                    />
+                                </div>
                                 <p className="ProfilePage_error">
                                     {this.state.isThereError
                                         ? "Error: All inputs must be filled"
@@ -351,9 +352,11 @@ export default class UserProfile extends Component {
                         <div className="card ProfilePage_cardStyle">
                             <div
                                 className="card-img-top ProfilePage_imgStyle"
-                                style={{ backgroundImage: 
-                                    this.state.avatar ? `url(${this.state.avatar})` : "url('http://via.placeholder.com/200x200?text=No%20User%20Image')",
-                                backgroundSize: "200px" }}
+                                style={{
+                                    backgroundImage:
+                                        this.state.avatar ? `url(${this.state.avatar})` : "url('http://via.placeholder.com/200x200?text=No%20User%20Image')",
+                                    backgroundSize: "200px"
+                                }}
                             />
                             <div className="card-block">
                                 <h2 className="card-title ProfilePage_userName">
