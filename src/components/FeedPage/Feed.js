@@ -41,6 +41,7 @@ export default class Feed extends Component {
             isTextFilterOn: false,
             isImageFilterOn: false,
             isVideoFilterOn: false,
+            filterDropDown: "All Posts",
 
             /* modal states */
             activePage: 0,
@@ -252,14 +253,22 @@ export default class Feed extends Component {
         });
     }
 
-    filterAllPosts() {
+    filterAllPosts = (event) => {
         this.resetFilters();
+
+        this.setState({
+            filterDropDown: event.target.innerHTML
+        })
 
         this.showPosts(this.state.posts);
     }
 
     filterPostsByType(event) {
         this.resetFilters();
+
+        this.setState({
+            filterDropDown: event.target.innerHTML
+        })
 
         let textPostsArray = [];
         let imagePostsArray = [];
@@ -480,7 +489,7 @@ export default class Feed extends Component {
                                 aria-haspopup="true"
                                 aria-expanded="false"
                             >
-                                Filter
+                                {this.state.filterDropDown}
                             </button>
                             <div
                                 className="dropdown-menu FeedPage_dropdownStyle"
