@@ -52,7 +52,7 @@ export default class TextPost extends Component {
 
     uploadImage() {
         const file = document.querySelector("input[type=file]").files[0];
-        
+
         this.dataService.uploadImage(file, (response) => {
             this.setState({
                 uploadedImage: response,
@@ -74,12 +74,9 @@ export default class TextPost extends Component {
                         {this.state.successfulUpload ? <p>Image successfully uploaded!</p> : ""}
                         {this.state.unsuccessfulUpload ? <p>There hass been a mistake, please try again</p> : ""}
                     </div>
-                </div>
-
-                <div className="row">
                     <div className="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
                         <input type="file" name="file" id="file" className="form-control-file Posts_chooseFileButtonStyle" />
-                        <label htmlFor="file" className="Posts_mockChooseFileButton btn">Or Choose a File</label>
+                        <label htmlFor="file" className="Posts_mockChooseFileButton btn">Choose a File</label>
                     </div>
 
                     <div className="col-12 col-sm-4 offset-sm-1 col-md-3 offset-md-4 col-lg-4 offset-lg-4 col-xl-3 offset-xl-6">
@@ -89,10 +86,9 @@ export default class TextPost extends Component {
                         <p>{this.state.isThereError ? `Error ${this.state.error}` : ""}</p>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3">
-                        <input type="button" value="Post" className="btn Posts_postButtonStyle" name="imagePost" onClick={this.createImagePost} />
-                    </div>          
+                <div>
+                    <input type="button" value="Post" className="btn Posts_postButtonStyle col-12 col-sm-12 col-md-4 offset-md-4 col-lg-2 offset-lg-8 col-xl-2 offset-xl-8" name="imagePost" onClick={this.createImagePost} />
+                    <input type="button" value="Close" className="btn AddPostModal_closeButton col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2" onClick={this.props.closeModal} />
                 </div>
             </div>
         );

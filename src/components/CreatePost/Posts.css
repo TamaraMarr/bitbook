@@ -5,16 +5,13 @@
 	border: none;
 	background-color: #785964;
 	float: right;
-	width: 10%;
 	font-size: 1rem;
-	margin: 15px 10px 30px 15px;
 }
 
-
-@media all and (max-width: 470px) {
+@media all and (max-width: 771px) {
     .Posts_postButtonStyle {
-        width: 65px;
-        padding: 5px 10px;
+		padding: 5px 10px;
+		margin: 10px 0;
     }
 }
 
@@ -34,8 +31,7 @@
 	background-color: #785964;
 	float: right;
 	margin-bottom: 30px;
-	width: 90%;
-	height: 60%;
+	width: 100%;
 	min-width: 100px;
 	font-size: 1rem;
 	margin-top: 15px;
@@ -67,13 +63,10 @@
 	background-color: #785964;
 	float: left;
 	margin-bottom: 10px;
-	width: 90%;
-    height: 60%;
-    min-height: 40px;
+	width: 100%;
 	min-width: 100px;
 	font-size: 1rem;
 	margin-top: 15px;
-	padding-top: 12px;
 }
 
 .Posts_mockChooseFileButton:hover {
@@ -87,4 +80,30 @@
 .Posts_inputStyle {
 	width: 97%;
 	margin: 15px auto;
+}
+
+/* CLOSE MODAL BUTTON */
+.AddPostModal_closeButton {
+    font-weight: bold;
+    color: rgb(236, 221, 210);
+    border: none;
+    background-color: #785964;
+    float: left;
+	font-size: 1rem;
+	margin-bottom: 25px;
+ }
+ 
+ @media all and (max-width: 771px) {
+    .AddPostModal_closeButton {
+		padding: 5px 10px;
+		margin: 10px 0;
+    }
+}
+
+ .AddPostModal_closeButton:hover {
+     background-color: #917881;
+ }
+
+ .AddPostModal_closeButton:active {
+    background-color: #785964;
 }

@@ -229,7 +229,7 @@ export default class Feed extends Component {
 
         return this.processVideoUrl(post.videoUrl);
     }
-    
+
     processVideoUrl(video) {
         const videoEndPart = video.split("=")[1];
         return (
@@ -268,28 +268,28 @@ export default class Feed extends Component {
         this.state.posts.map(post => {
             if (post.type === "text") {
                 textPostsArray.push(post);
-            } else if(post.type === "image") {
+            } else if (post.type === "image") {
                 imagePostsArray.push(post);
             } else {
                 videoPostsArray.push(post);
             }
         });
 
-        if(event.target.getAttribute("name") === "text"){
+        if (event.target.getAttribute("name") === "text") {
             this.setState({
                 textPosts: textPostsArray,
                 isTextFilterOn: true,
                 isTextFilterSelected: true,
                 areAllFilteresOff: false
             });
-        } else if(event.target.getAttribute("name") === "image"){
+        } else if (event.target.getAttribute("name") === "image") {
             this.setState({
                 imagePosts: imagePostsArray,
                 isImageFilterOn: true,
                 isImageFilterSelected: true,
                 areAllFilteresOff: false
             });
-        } else if(event.target.getAttribute("name") === "video"){
+        } else if (event.target.getAttribute("name") === "video") {
             this.setState({
                 videoPosts: videoPostsArray,
                 isVideoFilterOn: true,
@@ -430,11 +430,11 @@ export default class Feed extends Component {
     backToTop() {
         document.documentElement.scrollTop = 0;
     }
-    
+
     /* ADDITIONAL FUNCTIONALITIES */
     enlargeImage(event) {
         let img = event.target.src;
-        
+
         this.setState({
             isImgShown: true,
             enlargedImg: img,
@@ -451,7 +451,7 @@ export default class Feed extends Component {
 
     render() {
         return (
-            <div className="col-12" style={{marginTop: "90px"}}>
+            <div className="col-12" style={{ marginTop: "90px" }}>
                 {this.state.isImgShown ? (
                     <EnlargeImage
                         imgSrc={this.state.enlargedImg}
@@ -459,8 +459,8 @@ export default class Feed extends Component {
                         resetHiddenPic={this.resetHidden}
                     />
                 ) : (
-                    ""
-                )}
+                        ""
+                    )}
                 <div>
                     <div
                         className="row"
@@ -492,7 +492,7 @@ export default class Feed extends Component {
                                     name="allPosts"
                                 >
                                     All Posts
-                                    {this.state.areAllFilteresOff ? <i className="fa fa-check" style={{ marginLeft: "50px"}}></i> : ""}
+                                    {this.state.areAllFilteresOff ? <i className="fa fa-check" style={{ marginLeft: "50px" }}></i> : ""}
                                 </p>
                                 <p
                                     className="dropdown-item FeedPage_dropdownElementStyle"
@@ -500,7 +500,7 @@ export default class Feed extends Component {
                                     name="text"
                                 >
                                     Text Posts
-                                    {this.state.isTextFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px"}}></i> : ""}
+                                    {this.state.isTextFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px" }}></i> : ""}
                                 </p>
                                 <p
                                     className="dropdown-item FeedPage_dropdownElementStyle"
@@ -508,7 +508,7 @@ export default class Feed extends Component {
                                     name="image"
                                 >
                                     Image Posts
-                                    {this.state.isImageFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px"}}></i> : ""}
+                                    {this.state.isImageFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px" }}></i> : ""}
                                 </p>
                                 <p
                                     className="dropdown-item FeedPage_dropdownElementStyle"
@@ -516,7 +516,7 @@ export default class Feed extends Component {
                                     name="video"
                                 >
                                     Video Posts
-                                    {this.state.isVideoFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px"}}></i> : ""}
+                                    {this.state.isVideoFilterSelected ? <i className="fa fa-check" style={{ marginLeft: "50px" }}></i> : ""}
                                 </p>
                             </div>
                         </div>
@@ -580,7 +580,7 @@ export default class Feed extends Component {
                         onClick={this.openModal}
                     />
                 </div>
-                
+
                 <input
                     value="Back to Top"
                     type="button"
@@ -606,7 +606,7 @@ export default class Feed extends Component {
                             <form>
                                 <div className="row mx-auto AddPostModal_generalStyle">
                                     <Redirect from="/feed" to="/feed/text" />
-                                    <div className="col-12 col-md-4 col-lg-4" style={{ padding: "0"}}>
+                                    <div className="col-12 col-md-4 col-lg-4" style={{ padding: "0" }}>
                                         <Link to="/feed/text">
                                             <button className="btn btn-primary AddPostModal_addPostButtonStyle AddPostModal_switchBoxStyle">
                                                 Text Post
@@ -614,7 +614,7 @@ export default class Feed extends Component {
                                         </Link>
                                     </div>
 
-                                    <div className="col-12 col-md-4 col-lg-4" style={{ padding: "0"}}>
+                                    <div className="col-12 col-md-4 col-lg-4" style={{ padding: "0" }}>
                                         <Link to="/feed/image">
                                             <button className="btn  btn-primary AddPostModal_addPostButtonStyle AddPostModal_switchBoxStyle">
                                                 Image Post
@@ -622,7 +622,7 @@ export default class Feed extends Component {
                                         </Link>
                                     </div>
 
-                                    <div className="col-12 col-md-4 col-lg-4" style={{ padding: "0"}}>
+                                    <div className="col-12 col-md-4 col-lg-4" style={{ padding: "0" }}>
                                         <Link to="/feed/video">
                                             <button className="btn btn-primary AddPostModal_addPostButtonStyle AddPostModal_switchBoxStyle">
                                                 Video Post
@@ -635,28 +635,22 @@ export default class Feed extends Component {
                                     <Route
                                         path="/feed/text"
                                         render={() => (
-                                            <TextPost onPostCreate={this.afterPostCreateAction} />
+                                            <TextPost onPostCreate={this.afterPostCreateAction} closeModal={this.closeModal} />
                                         )}
                                     />
                                     <Route
                                         path="/feed/image"
                                         render={() => (
-                                            <ImagePost onPostCreate={this.afterPostCreateAction} />
+                                            <ImagePost onPostCreate={this.afterPostCreateAction} closeModal={this.closeModal} />
                                         )}
                                     />
                                     <Route
                                         path="/feed/video"
                                         render={() => (
-                                            <VideoPost onPostCreate={this.afterPostCreateAction} />
+                                            <VideoPost onPostCreate={this.afterPostCreateAction} closeModal={this.closeModal} />
                                         )}
                                     />
                                 </Switch>
-                                <input
-                                    type="button"
-                                    value="Close"
-                                    onClick={this.closeModal}
-                                    className="btn AddPostModal_closeButton"
-                                />
                             </form>
                         </div>
                     </div>

@@ -52,31 +52,3 @@
 .AddPostModal_addPostButtonStyle:active {
     background-color: #785964;
 }
-
-/* CLOSE MODAL BUTTON */
-.AddPostModal_closeButton {
-    font-weight: bold;
-    color: rgb(236, 221, 210);
-    border: none;
-    background-color: #785964;
-    float: left;
-    margin: 15px;
-    width: 10%;
-    height: 50%;
-    font-size: 1rem;
- }
-
-@media all and (max-width: 470px) {
-    .AddPostModal_closeButton {
-        width: 65px;
-        padding: 5px 10px;
-    }
-}
- 
- .AddPostModal_closeButton:hover {
-     background-color: #917881;
- }
-
- .AddPostModal_addPostButtonStyle:active {
-    background-color: #785964;
-}
